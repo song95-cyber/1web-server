@@ -45,7 +45,7 @@ public class ClientHandler implements Runnable{
             method = array[0];
             uri = array[1];//这里可能会出现数组下标越界异常!原因:浏览器空请求，后期会解决
             protocol = array[2];
-
+            // http://localhost:8088/myweb/index.html
             System.out.println("method:"+method);    //GET
             System.out.println("uri:"+uri);          // /myweb/index.html
             System.out.println("protocol:"+protocol);//HTTP/1.1
