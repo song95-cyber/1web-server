@@ -19,11 +19,9 @@ public class ClientHandler implements Runnable{
 
     @Override
     public void run() {
-
         try {
             //读取客户端发过来的消息
             InputStream in = socket.getInputStream();
-
             char pre='a',cur='a';//pre上次读取的字符，cur本次读取的字符
             StringBuilder builder = new StringBuilder();
             int d;
@@ -37,6 +35,24 @@ public class ClientHandler implements Runnable{
             }
             String line = builder.toString().trim();
             System.out.println(line);
+
+            //请求行相关信息
+            String method;//请求方式
+            String uri;//抽象路径
+            String protocol;//协议版本
+
+            String[] array = line.split("\\s");
+            method = array[0];
+            uri = array[1];//这里可能会出现数组下标越界异常!原因:浏览器空请求，后期会解决
+            protocol = array[2];
+
+            System.out.println("method:"+method);    //GET
+            System.out.println("uri:"+uri);          // /myweb/index.html
+            System.out.println("protocol:"+protocol);//HTTP/1.1
+
+
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
